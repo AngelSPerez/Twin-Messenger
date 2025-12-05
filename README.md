@@ -12,11 +12,8 @@
 ## 📸 Demo
 
 | Login | Contact List | Conversation |
-|:---:|:---:|:---:|
-| <img width="452" height="665" alt="image" src="https://github.com/user-attachments/assets/2f8e4e34-dd7c-48cf-90d4-4fb075ace2ce" />
- | <img width="452" height="693" alt="image" src="https://github.com/user-attachments/assets/d9d213a9-86b8-4dc5-a61f-9f8b2efdb094" />
- | <img width="452" height="577" alt="image" src="https://github.com/user-attachments/assets/31140da9-c7df-4aa4-a28c-871cbe826698" />
- |
+|<img width="452" height="665" alt="image" src="https://github.com/user-attachments/assets/2f8e4e34-dd7c-48cf-90d4-4fb075ace2ce" />|<img width="452" height="693" alt="image" src="https://github.com/user-attachments/assets/d9d213a9-86b8-4dc5-a61f-9f8b2efdb094" />|<img width="452" height="577" alt="image" src="https://github.com/user-attachments/assets/31140da9-c7df-4aa4-a28c-871cbe826698" />|
+ 
 ## 🚀 Features
 
 - 📨 **Instant Messaging:** Fluid chat system using AJAX Polling.
