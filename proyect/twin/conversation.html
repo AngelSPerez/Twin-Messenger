@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twin Messenger | Revive the nostalgia</title>
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/hat.css">
+</head>
+<body>
+    <div class="main">
+        <div class="title">
+            <img src="images/Twin Messenger.png" alt="Logo">
+            <h3>Twin Messenger</h3>
+        </div>
+
+        <div class="principal">
+            <div class="chats">
+                <div class="status-bar">
+                    <img src="images/invite.png" alt="">
+                    <div class="info">
+                        <p>Conversation with</p>
+                        <h3 id="contact-name">Loading...</h3>
+                    </div>
+                    <button onclick="window.location.href='main.html'" style="margin-left: auto; margin-right: 15px; padding: 5px 15px; cursor: pointer; background: #6ba3d4; color: white; border: 1px solid #5a92c3; border-radius: 4px;">
+                        Back
+                    </button>
+                </div>
+                <div class="chat-real" id="chat-messages">
+                    <div style="text-align: center; padding: 20px; color: #666;">
+                        <p>Cargando conversación...</p>
+                    </div>
+                </div>
+                <div class="chat-actions">
+                    <div class="action-ch" onclick="alert('Función no disponible en esta versión')"><p>📃 Font</p></div>
+                    <div class="action-ch" onclick="alert('Función no disponible en esta versión')"><p>🙂 Emoticons</p></div>
+                    <div class="action-ch" onclick="sendBuzz()"><p>📢 Buzz</p></div>
+                </div>
+                <div class="user-text">
+                    <textarea name="input-area" id="input-area" rows="4" placeholder="Escribe tu mensaje aquí..."></textarea>
+                    <button class="send" id="send-btn">
+                        Send
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+    <script>
+        // Pedir permiso para notificaciones al cargar
+        if ('Notification' in window && Notification.permission === 'default') {
+            Notification.requestPermission();
+        }
+    </script>
+</body>
+</html>

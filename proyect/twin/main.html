@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twin Messenger | Revive the nostalgia</title>
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        /* Modal Overlay - Fondo translúcido */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 9999;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex !important;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Modal Content - Ventana flotante */
+        .modal-content {
+            background: #ffffff;
+            border: 1px solid #ddd;
+            padding: 25px;
+            width: 90%;
+            max-width: 360px;
+            margin: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: relative;
+            animation: slideDown 0.3s ease;
+        }
+
+        /* Animaciones */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Header del modal */
+        .modal-content h4 {
+            margin: 0 0 8px 0;
+            color: #333;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .modal-content p {
+            font-size: 14px;
+            margin-bottom: 18px;
+            color: #666;
+        }
+
+        /* Input mejorado */
+        .modal-content input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 18px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: border-color 0.2s ease;
+            box-sizing: border-box;
+        }
+
+        .modal-content input[type="email"]:focus {
+            outline: none;
+            border-color: #6ba3d4;
+        }
+
+        /* Botones mejorados */
+        .modal-buttons {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+        }
+
+        .modal-buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+            flex: 1;
+            margin: 0;
+        }
+
+        .btn-add {
+            background: #5cb85c;
+            color: white;
+        }
+
+        .btn-add:hover {
+            opacity: 0.9;
+        }
+
+        .btn-add:active {
+            opacity: 0.8;
+        }
+
+        .btn-cancel {
+            background: #f0ad4e;
+            color: white;
+        }
+
+        .btn-cancel:hover {
+            opacity: 0.9;
+        }
+
+        .btn-cancel:active {
+            opacity: 0.8;
+        }
+
+        /* Botón de cerrar (X) */
+        .modal-close {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: transparent;
+            border: none;
+            font-size: 24px;
+            color: #999;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            padding: 0;
+            min-width: 44px;
+            min-height: 44px;
+        }
+
+        .modal-close:hover {
+            color: #666;
+        }
+
+        .modal-close:active {
+            color: #333;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .modal-content {
+                width: 95%;
+                padding: 20px;
+            }
+
+            .modal-buttons {
+                flex-direction: column;
+            }
+
+            .modal-buttons button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="title">
+            <img src="images/Twin Messenger.png" alt="Logo">
+            <h3>Twin Messenger</h3>
+        </div>
+
+        <div class="principal">
+            <div class="actions">
+                <a href="#" class="action" onclick="showAddContactModal(); return false;">
+                    <img src="images/add.png" alt="Agregar">
+                    <p>Add</p>
+                </a>
+                <a href="#" class="action2" onclick="alert('Función no disponible en esta versión'); return false;">
+                    <img src="images/Twin Messenger.png" alt="comunidades" width="45px">
+                    <p>Community</p>
+                </a>
+                <a href="#" class="action" onclick="alert('Función no disponible en esta versión'); return false;">
+                    <img src="images/invite.png" alt="invitar">
+                    <p>Invite</p>
+                </a>
+            </div>
+
+            <div class="chats">
+                <div class="status-bar">
+                    <img src="images/user.png" alt="">
+                    <div class="info">
+                        <p>My Status:</p>
+                        <h3 id="user-status">Loading...</h3>
+                    </div>
+                    <button onclick="handleLogout()" style="margin-right: 15px; padding: 5px 15px; cursor: pointer; background: #ff6b6b; color: white; border: 1px solid #ff5252; border-radius: 4px;">
+                        Logout
+                    </button>
+                </div>
+                <div class="chats-p" id="contacts-list">
+                    <div style="text-align: center; padding: 20px; color: #666;">
+                        <p>Cargando contactos...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Mejorado con Overlay -->
+    <div id="add-contact-modal" class="modal-overlay" onclick="closeModalOnOverlay(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            
+            <h4>Agregar Contacto</h4>
+            <p>Ingresa el correo electrónico de tu amigo</p>
+            
+            <input 
+                type="email" 
+                id="contact-email-input" 
+                placeholder="correo@ejemplo.com"
+                onkeypress="handleEnterKey(event)"
+            >
+            
+            <div class="modal-buttons">
+                <button class="btn-add" onclick="submitAddContact()">
+                    Agregar
+                </button>
+                <button class="btn-cancel" onclick="closeAddContactModal()">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Cerrar modal al hacer clic fuera de él
+        function closeModalOnOverlay(event) {
+            if (event.target === event.currentTarget) {
+                closeAddContactModal();
+            }
+        }
+
+        // Cerrar modal con tecla Escape
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const modal = document.getElementById('add-contact-modal');
+                if (modal.classList.contains('active')) {
+                    closeAddContactModal();
+                }
+            }
+        });
+
+        // Enviar con Enter
+        function handleEnterKey(event) {
+            if (event.key === 'Enter') {
+                submitAddContact();
+            }
+        }
+
+        // Actualizar funciones de mostrar/ocultar modal
+        window.showAddContactModal = function() {
+            const modal = document.getElementById('add-contact-modal');
+            const input = document.getElementById('contact-email-input');
+            if (modal) {
+                modal.classList.add('active');
+                modal.style.display = 'flex';
+                if (input) {
+                    input.value = '';
+                    setTimeout(() => input.focus(), 100);
+                }
+            }
+        };
+
+        window.closeAddContactModal = function() {
+            const modal = document.getElementById('add-contact-modal');
+            if (modal) {
+                modal.classList.remove('active');
+                modal.style.display = 'none';
+            }
+        };
+    </script>
+</body>
+</html>

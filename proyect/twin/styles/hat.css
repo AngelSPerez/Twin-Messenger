@@ -1,0 +1,228 @@
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.chat-real {
+    display: flex;
+    flex-direction: column;
+    width: 93%;
+    height: 460px;
+    max-height: 460px;
+    background: #f3f8fd;
+    border-radius: 10px;
+    margin-top: 10px;
+    border: 1.5px solid rgba(0, 0, 0, 0.418);
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.chats {
+    align-items: center;
+    overflow: hidden;
+}
+
+textarea {
+    width: 214px;
+    height: 80px;
+    margin-right: 15px;
+    border-radius: 5px;
+    padding: 8px;
+    font-family: Tahoma;
+    font-size: 14px;
+    resize: none;
+}
+
+.user-text {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 20px;
+    align-items: center;
+    height: 80px;
+    flex-shrink: 0;
+}
+
+.send {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: solid 1px rgb(90, 90, 90);
+    color: rgb(0, 0, 0);
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.send:hover {
+    background: #8ab8e0;
+    transform: scale(1.05);
+}
+
+.send:active {
+    transform: scale(0.95);
+}
+
+.chat-actions {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    flex-shrink: 0;
+    padding: 10px 0;
+}
+
+.action-ch {
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+    user-select: none;
+}
+
+.action-ch:hover {
+    background: rgba(158, 197, 232, 0.3);
+}
+
+.action-ch:active {
+    transform: scale(0.95);
+}
+
+.dm {
+    margin: 0;
+    color: rgb(0, 100, 214);
+    padding: 5px;
+    font-weight: bold;
+    font-size: 12px;
+    flex-shrink: 0;
+}
+
+.dm2 {
+    margin: 0px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    font-size: 15px;
+    line-height: 1.4;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    flex-shrink: 0;
+}
+
+/* Scrollbar personalizado para el chat */
+.chat-real::-webkit-scrollbar {
+    width: 8px;
+}
+
+.chat-real::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+
+.chat-real::-webkit-scrollbar-thumb {
+    background: rgba(0, 100, 214, 0.3);
+    border-radius: 10px;
+}
+
+.chat-real::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 100, 214, 0.5);
+}
+
+/* ===================================== */
+/* RESPONSIVE DESIGN PARA MÓVILES */
+/* ===================================== */
+
+@media screen and (max-width: 768px) {
+    .chat-real {
+        width: 95%;
+        height: 350px;
+        max-height: 350px;
+        padding: 8px;
+    }
+    
+    /* MANTENER LAYOUT HORIZONTAL */
+    .user-text {
+        display: flex;
+        flex-direction: row;
+        height: 80px;
+        padding-bottom: 15px;
+        align-items: center;
+    }
+    
+    textarea {
+        width: calc(100% - 100px); /* Dejar espacio para el botón */
+        height: 70px;
+        margin-right: 10px;
+        font-size: 16px; /* Evitar zoom en iOS */
+    }
+    
+    .send {
+        width: 70px;
+        height: 70px;
+        font-size: 13px;
+        margin-bottom: 20px;
+        flex-shrink: 0;
+    }
+    
+    .chat-actions {
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .action-ch {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+    
+    .action-ch p {
+        margin: 0;
+    }
+    
+    .dm {
+        font-size: 11px;
+    }
+    
+    .dm2 {
+        font-size: 14px;
+        margin-left: 5px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .chat-real {
+        height: 300px;
+        max-height: 300px;
+    }
+    
+    /* MANTENER LAYOUT HORIZONTAL EN MÓVILES PEQUEÑOS */
+    .user-text {
+        display: flex;
+        flex-direction: row;
+        height: 70px;
+        padding-bottom: 10px;
+    }
+    
+    textarea {
+        width: calc(100% - 80px); /* Ajustar para botón más pequeño */
+        height: 60px;
+        margin-right: 8px;
+        font-size: 16px;
+    }
+    
+    .send {
+        width: 60px;
+        height: 60px;
+        font-size: 12px;
+        margin-bottom: 15px;
+        flex-shrink: 0;
+    }
+    
+    .action-ch {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+}
