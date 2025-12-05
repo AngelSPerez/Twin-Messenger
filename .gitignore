@@ -1,0 +1,19 @@
+# Dependencies and logs
+node_modules/
+npm-debug.log
+error_log
+*.log
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Database & Config (Security)
+# Ensure you do not upload your real DB credentials
+/api/config.php
+.env
+db_connect.php
+
+# IDE folders
+.vscode/
+.idea/
